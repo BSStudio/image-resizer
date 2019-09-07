@@ -1,0 +1,10 @@
+C:\Users\marta\Documents\BSS\ImageResizer_v2\BSSImageResizer\BSSImageResizer\bin\Debug\BSSImageResizer.exe.config
+C:\Users\marta\Documents\BSS\ImageResizer_v2\BSSImageResizer\BSSImageResizer\bin\Debug\BSSImageResizer.exe
+C:\Users\marta\Documents\BSS\ImageResizer_v2\BSSImageResizer\BSSImageResizer\bin\Debug\BSSImageResizer.pdb
+C:\Users\marta\Documents\BSS\ImageResizer_v2\BSSImageResizer\BSSImageResizer\obj\Debug\BSSImageResizer.csprojAssemblyReference.cache
+C:\Users\marta\Documents\BSS\ImageResizer_v2\BSSImageResizer\BSSImageResizer\obj\Debug\BSSImageResizer.Form1.resources
+C:\Users\marta\Documents\BSS\ImageResizer_v2\BSSImageResizer\BSSImageResizer\obj\Debug\BSSImageResizer.Properties.Resources.resources
+C:\Users\marta\Documents\BSS\ImageResizer_v2\BSSImageResizer\BSSImageResizer\obj\Debug\BSSImageResizer.csproj.GenerateResource.cache
+C:\Users\marta\Documents\BSS\ImageResizer_v2\BSSImageResizer\BSSImageResizer\obj\Debug\BSSImageResizer.csproj.CoreCompileInputs.cache
+C:\Users\marta\Documents\BSS\ImageResizer_v2\BSSImageResizer\BSSImageResizer\obj\Debug\BSSImageResizer.exe
+C:\Users\marta\Documents\BSS\ImageResizer_v2\BSSImageResizer\BSSImageResizer\obj\Debug\BSSImageResizer.pdb
