@@ -44,6 +44,8 @@ namespace BSSImageResizer
         {
             //W:\web\bss_vagott_web_16x9_HD
 
+            btGenerate.BackColor = Color.LightGray;
+
             String VideosRoute = tbRoute.Text + "\\" + (rbHD.Checked ? HDFolder : SDFolder) + "\\high_quality"; 
 
             DirectoryInfo DI = new DirectoryInfo(VideosRoute);
@@ -61,7 +63,6 @@ namespace BSSImageResizer
                     cbSelectProjectName.Items.Clear();
                     tbRoute.BackColor = Color.White;
                 }
-                    
 
                 foreach (FileInfo fi in fileList)
                 {
@@ -132,19 +133,29 @@ namespace BSSImageResizer
         private void rbHD_CheckedChanged(object sender, EventArgs e)
         {
             RefreshProjectLink();
+            cbSelectProjectName.Text = "";
         }
 
         private void btGenerate_Click(object sender, EventArgs e)
         {
-            String VideosRoute = tbRoute.Text + "\\" + (rbHD.Checked ? HDFolder : SDFolder);
+            if (cbSelectProjectName.Text.Length != 0)
+            {
+                String VideosRoute = tbRoute.Text + "\\" + (rbHD.Checked ? HDFolder : SDFolder);
 
-            Image indexPic = new Bitmap(pbSelectedPic.ImageLocation);
+                Image indexPic = new Bitmap(pbSelectedPic.ImageLocation);
 
-            Image thumbnail = ResizeImage(indexPic, 160, 90);
-            thumbnail.Save(VideosRoute + "\\thumbnail\\" + cbSelectProjectName.Text + "_tn.png", ImageFormat.Png);
+                Image thumbnail = ResizeImage(indexPic, 160, 90);
+                thumbnail.Save(VideosRoute + "\\thumbnail\\" + cbSelectProjectName.Text + "_tn.png", ImageFormat.Png);
 
-            Image keyframe = ResizeImage(indexPic, 768, 432);
-            keyframe.Save(VideosRoute + "\\keyframe\\" + cbSelectProjectName.Text + "_lq.png", ImageFormat.Png);
+                Image keyframe = ResizeImage(indexPic, 768, 432);
+                keyframe.Save(VideosRoute + "\\keyframe\\" + cbSelectProjectName.Text + "_lq.png", ImageFormat.Png);
+
+                tbDesc.Text = "<img src = \"https://v.bsstudio.hu/bss_vagott_web_16a9_" + (rbHD.Checked ? "HD" : "SD") +
+                              "/keyframe/" + cbSelectProjectName.Text + "_lq.png\" style = \"display: none;\" />";
+
+                btGenerate.BackColor = Color.LightGreen;
+            }
+            
         }
     }
 }

@@ -41,6 +41,8 @@
             this.rbSD = new System.Windows.Forms.RadioButton();
             this.rbHD = new System.Windows.Forms.RadioButton();
             this.label4 = new System.Windows.Forms.Label();
+            this.tbDesc = new System.Windows.Forms.TextBox();
+            this.lbDesc = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pbSelectedPic)).BeginInit();
             this.SuspendLayout();
             // 
@@ -88,13 +90,14 @@
             // 
             // btSelectImage
             // 
+            this.btSelectImage.BackColor = System.Drawing.Color.LightGray;
             this.btSelectImage.Font = new System.Drawing.Font("Montserrat", 9F);
             this.btSelectImage.Location = new System.Drawing.Point(194, 251);
             this.btSelectImage.Name = "btSelectImage";
             this.btSelectImage.Size = new System.Drawing.Size(90, 28);
             this.btSelectImage.TabIndex = 4;
             this.btSelectImage.Text = "Kiválasztás";
-            this.btSelectImage.UseVisualStyleBackColor = true;
+            this.btSelectImage.UseVisualStyleBackColor = false;
             this.btSelectImage.Click += new System.EventHandler(this.btSelectImage_Click);
             // 
             // pbSelectedPic
@@ -130,24 +133,26 @@
             // 
             // btGenerate
             // 
+            this.btGenerate.BackColor = System.Drawing.Color.LightGray;
             this.btGenerate.Font = new System.Drawing.Font("Montserrat", 9F);
-            this.btGenerate.Location = new System.Drawing.Point(497, 566);
+            this.btGenerate.Location = new System.Drawing.Point(497, 625);
             this.btGenerate.Name = "btGenerate";
             this.btGenerate.Size = new System.Drawing.Size(90, 28);
             this.btGenerate.TabIndex = 8;
             this.btGenerate.Text = "Generálás";
-            this.btGenerate.UseVisualStyleBackColor = true;
+            this.btGenerate.UseVisualStyleBackColor = false;
             this.btGenerate.Click += new System.EventHandler(this.btGenerate_Click);
             // 
             // button2
             // 
+            this.button2.BackColor = System.Drawing.Color.LightGray;
             this.button2.Font = new System.Drawing.Font("Montserrat", 9F);
-            this.button2.Location = new System.Drawing.Point(593, 566);
+            this.button2.Location = new System.Drawing.Point(593, 625);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(90, 28);
             this.button2.TabIndex = 9;
             this.button2.Text = "Kilépés";
-            this.button2.UseVisualStyleBackColor = true;
+            this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // rbSD
@@ -185,11 +190,33 @@
             this.label4.TabIndex = 12;
             this.label4.Text = "Tőfájlnév:";
             // 
+            // tbDesc
+            // 
+            this.tbDesc.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tbDesc.Font = new System.Drawing.Font("Montserrat", 10F);
+            this.tbDesc.Location = new System.Drawing.Point(18, 590);
+            this.tbDesc.Name = "tbDesc";
+            this.tbDesc.Size = new System.Drawing.Size(665, 24);
+            this.tbDesc.TabIndex = 14;
+            // 
+            // lbDesc
+            // 
+            this.lbDesc.AutoSize = true;
+            this.lbDesc.Font = new System.Drawing.Font("Montserrat", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbDesc.Location = new System.Drawing.Point(14, 567);
+            this.lbDesc.Name = "lbDesc";
+            this.lbDesc.Size = new System.Drawing.Size(267, 20);
+            this.lbDesc.TabIndex = 13;
+            this.lbDesc.Text = "Amit be kell másolj a videó leírásába:";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(694, 603);
+            this.ClientSize = new System.Drawing.Size(694, 665);
+            this.Controls.Add(this.tbDesc);
+            this.Controls.Add(this.lbDesc);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.rbHD);
             this.Controls.Add(this.rbSD);
@@ -229,6 +256,8 @@
         private System.Windows.Forms.RadioButton rbSD;
         private System.Windows.Forms.RadioButton rbHD;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox tbDesc;
+        private System.Windows.Forms.Label lbDesc;
     }
 }
 
