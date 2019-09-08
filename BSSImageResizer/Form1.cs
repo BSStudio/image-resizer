@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Drawing2D;
+using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -13,6 +15,9 @@ namespace BSSImageResizer
 {
     public partial class Form1 : Form
     {
+        private const String HDFolder = "bss_vagott_web_16a9_HD"; //high_quality/low_quality
+        private const String SDFolder = "bss_vagott_web_16a9_SD";
+
         public Form1()
         {
             InitializeComponent();
@@ -27,8 +32,6 @@ namespace BSSImageResizer
             {
                 pbSelectedPic.SizeMode = PictureBoxSizeMode.StretchImage;
                 pbSelectedPic.ImageLocation = of.FileName;
-
-
             }
         }
 
@@ -40,9 +43,6 @@ namespace BSSImageResizer
         private void RefreshProjectLink()
         {
             //W:\web\bss_vagott_web_16x9_HD
-
-            String HDFolder = "bss_vagott_web_16a9_HD"; //high_quality/low_quality
-            String SDFolder = "bss_vagott_web_16a9_SD";
 
             String VideosRoute = tbRoute.Text + "\\" + (rbHD.Checked ? HDFolder : SDFolder) + "\\high_quality"; 
 
@@ -86,6 +86,31 @@ namespace BSSImageResizer
             }
         }
 
+        public static Bitmap ResizeImage(Image image, int width, int height)
+        {
+            var destRect = new Rectangle(0, 0, width, height);
+            var destImage = new Bitmap(width, height);
+
+            destImage.SetResolution(image.HorizontalResolution, image.VerticalResolution);
+
+            using (var graphics = Graphics.FromImage(destImage))
+            {
+                graphics.CompositingMode = CompositingMode.SourceCopy;
+                graphics.CompositingQuality = CompositingQuality.HighQuality;
+                graphics.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                graphics.SmoothingMode = SmoothingMode.HighQuality;
+                graphics.PixelOffsetMode = PixelOffsetMode.HighQuality;
+
+                using (var wrapMode = new ImageAttributes())
+                {
+                    wrapMode.SetWrapMode(WrapMode.TileFlipXY);
+                    graphics.DrawImage(image, destRect, 0, 0, image.Width, image.Height, GraphicsUnit.Pixel, wrapMode);
+                }
+            }
+
+            return destImage;
+        }
+
         private void Form1_Load(object sender, EventArgs e)
         {
             RefreshProjectLink();
@@ -111,7 +136,15 @@ namespace BSSImageResizer
 
         private void btGenerate_Click(object sender, EventArgs e)
         {
+            String VideosRoute = tbRoute.Text + "\\" + (rbHD.Checked ? HDFolder : SDFolder);
 
+            Image indexPic = new Bitmap(pbSelectedPic.ImageLocation);
+
+            Image thumbnail = ResizeImage(indexPic, 160, 90);
+            thumbnail.Save(VideosRoute + "\\thumbnail\\" + cbSelectProjectName.Text + "_tn.png", ImageFormat.Png);
+
+            Image keyframe = ResizeImage(indexPic, 768, 432);
+            keyframe.Save(VideosRoute + "\\keyframe\\" + cbSelectProjectName.Text + "_lq.png", ImageFormat.Png);
         }
     }
 }
