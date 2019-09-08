@@ -20,6 +20,8 @@ namespace BSSImageResizer
 
         public Form1()
         {
+            Application.VisualStyleState = System.Windows.Forms.VisualStyles.VisualStyleState.NoneEnabled;  //csodás WinXP looks
+
             InitializeComponent();
         }
 
@@ -40,12 +42,19 @@ namespace BSSImageResizer
             this.Close();
         }
 
+        private void clearFields()
+        {
+            btGenerate.BackColor = Color.LightGray;
+
+            tbRoute.BackColor = Color.White;
+
+            lbDesc.Text = "Amit be kell másolj a videó leírásába:";
+            tbDesc.Text = "";
+        }
+
         private void RefreshProjectLink()
         {
             //W:\web\bss_vagott_web_16x9_HD
-
-            btGenerate.BackColor = Color.LightGray;
-
             String VideosRoute = tbRoute.Text + "\\" + (rbHD.Checked ? HDFolder : SDFolder) + "\\high_quality"; 
 
             DirectoryInfo DI = new DirectoryInfo(VideosRoute);
@@ -56,12 +65,16 @@ namespace BSSImageResizer
                 Array.Sort<FileInfo>(fileList, new Comparison<FileInfo>(
                     (x, y) => x.Name.CompareTo(y.Name)));
 
-                Console.WriteLine(fileList);
+                foreach (var fileInfo in fileList)
+                {
+                    Console.WriteLine(fileInfo.Name);
+                }
 
                 if (fileList.Length != 0)
                 {
+                    clearFields();
+
                     cbSelectProjectName.Items.Clear();
-                    tbRoute.BackColor = Color.White;
                 }
 
                 foreach (FileInfo fi in fileList)
@@ -136,7 +149,12 @@ namespace BSSImageResizer
             cbSelectProjectName.Text = "";
         }
 
-        private void btGenerate_Click(object sender, EventArgs e)
+        private void cbSelectProjectName_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            clearFields();
+        }
+
+        private void generateImages()
         {
             if (cbSelectProjectName.Text.Length != 0)
             {
@@ -154,8 +172,36 @@ namespace BSSImageResizer
                               "/keyframe/" + cbSelectProjectName.Text + "_lq.png\" style = \"display: none;\" />";
 
                 btGenerate.BackColor = Color.LightGreen;
+
+                Clipboard.SetText(tbDesc.Text);
+                lbDesc.Text += " (vágólapra másolva)";
             }
-            
+        }
+
+        private void btGenerate_Click(object sender, EventArgs e)
+        {
+            generateImages();
+        }
+
+        private void generálásToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            generateImages();
+        }
+
+        private void kilépésToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void aboutToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            string message = "Készítő: ifj. Boldi\nKészült 2019 őszén, nagyságos törzsfőnökünk, PitaÚr megbízásából.\nGit: https://github.com/mboldi/image-resizer";
+            string caption = "About";
+            MessageBoxButtons buttons = MessageBoxButtons.OK;
+            DialogResult result;
+
+            // Displays the MessageBox.
+            result = MessageBox.Show(message, caption, buttons);
         }
     }
 }
