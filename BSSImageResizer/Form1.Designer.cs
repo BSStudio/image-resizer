@@ -46,11 +46,13 @@
             this.lbDesc = new System.Windows.Forms.Label();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.aboutToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.generálásToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.kilépésToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.aboutToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pbSelectedPic)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -73,7 +75,7 @@
             this.cbSelectProjectName.FormattingEnabled = true;
             this.cbSelectProjectName.Location = new System.Drawing.Point(269, 127);
             this.cbSelectProjectName.Name = "cbSelectProjectName";
-            this.cbSelectProjectName.Size = new System.Drawing.Size(412, 26);
+            this.cbSelectProjectName.Size = new System.Drawing.Size(317, 26);
             this.cbSelectProjectName.TabIndex = 1;
             this.cbSelectProjectName.SelectedIndexChanged += new System.EventHandler(this.cbSelectProjectName_SelectedIndexChanged);
             this.cbSelectProjectName.TextUpdate += new System.EventHandler(this.cbSelectProjectName_TextUpdate);
@@ -138,7 +140,7 @@
             this.tbRoute.Name = "tbRoute";
             this.tbRoute.Size = new System.Drawing.Size(488, 24);
             this.tbRoute.TabIndex = 7;
-            this.tbRoute.Text = "C:\\Users\\marta\\Documents\\BSS\\web";
+            this.tbRoute.Text = "W:\\";
             this.tbRoute.TextChanged += new System.EventHandler(this.tbRoute_TextChanged);
             // 
             // btGenerate
@@ -207,7 +209,7 @@
             this.tbDesc.Font = new System.Drawing.Font("Montserrat", 10F);
             this.tbDesc.Location = new System.Drawing.Point(17, 508);
             this.tbDesc.Name = "tbDesc";
-            this.tbDesc.Size = new System.Drawing.Size(665, 24);
+            this.tbDesc.Size = new System.Drawing.Size(569, 24);
             this.tbDesc.TabIndex = 14;
             // 
             // lbDesc
@@ -240,6 +242,20 @@
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem.Text = "File";
             // 
+            // generálásToolStripMenuItem
+            // 
+            this.generálásToolStripMenuItem.Name = "generálásToolStripMenuItem";
+            this.generálásToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
+            this.generálásToolStripMenuItem.Text = "Generálás";
+            this.generálásToolStripMenuItem.Click += new System.EventHandler(this.generálásToolStripMenuItem_Click);
+            // 
+            // kilépésToolStripMenuItem
+            // 
+            this.kilépésToolStripMenuItem.Name = "kilépésToolStripMenuItem";
+            this.kilépésToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
+            this.kilépésToolStripMenuItem.Text = "Bezárás";
+            this.kilépésToolStripMenuItem.Click += new System.EventHandler(this.kilépésToolStripMenuItem_Click);
+            // 
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -251,23 +267,9 @@
             // aboutToolStripMenuItem1
             // 
             this.aboutToolStripMenuItem1.Name = "aboutToolStripMenuItem1";
-            this.aboutToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.aboutToolStripMenuItem1.Size = new System.Drawing.Size(107, 22);
             this.aboutToolStripMenuItem1.Text = "About";
             this.aboutToolStripMenuItem1.Click += new System.EventHandler(this.aboutToolStripMenuItem1_Click);
-            // 
-            // generálásToolStripMenuItem
-            // 
-            this.generálásToolStripMenuItem.Name = "generálásToolStripMenuItem";
-            this.generálásToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.generálásToolStripMenuItem.Text = "Generálás";
-            this.generálásToolStripMenuItem.Click += new System.EventHandler(this.generálásToolStripMenuItem_Click);
-            // 
-            // kilépésToolStripMenuItem
-            // 
-            this.kilépésToolStripMenuItem.Name = "kilépésToolStripMenuItem";
-            this.kilépésToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.kilépésToolStripMenuItem.Text = "Bezárás";
-            this.kilépésToolStripMenuItem.Click += new System.EventHandler(this.kilépésToolStripMenuItem_Click);
             // 
             // radioButton1
             // 
@@ -276,16 +278,42 @@
             this.radioButton1.Font = new System.Drawing.Font("Montserrat", 10F);
             this.radioButton1.Location = new System.Drawing.Point(371, 103);
             this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(76, 24);
+            this.radioButton1.Size = new System.Drawing.Size(183, 24);
             this.radioButton1.TabIndex = 17;
-            this.radioButton1.Text = "SD 4x3";
+            this.radioButton1.Text = "SD 4x3 (coming soon)";
             this.radioButton1.UseVisualStyleBackColor = true;
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.LightGray;
+            this.button1.Font = new System.Drawing.Font("Montserrat", 9F);
+            this.button1.Location = new System.Drawing.Point(591, 506);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(90, 28);
+            this.button1.TabIndex = 18;
+            this.button1.Text = "Vágólapra!";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // button3
+            // 
+            this.button3.BackColor = System.Drawing.Color.LightGray;
+            this.button3.Font = new System.Drawing.Font("Montserrat", 9F);
+            this.button3.Location = new System.Drawing.Point(592, 125);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(90, 28);
+            this.button3.TabIndex = 19;
+            this.button3.Text = "Vágólapra!";
+            this.button3.UseVisualStyleBackColor = false;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(694, 579);
+            this.Controls.Add(this.button3);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.radioButton1);
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.tbDesc);
@@ -342,6 +370,8 @@
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem1;
         private System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button3;
     }
 }
 

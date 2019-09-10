@@ -1,26 +1,20 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace BSSImageResizer
 {
     public partial class Form1 : Form
     {
-        private const String HDFolder = "bss_vagott_web_16a9_HD"; //high_quality/low_quality
+        private const String HDFolder = "bss_vagott_web_16a9_HD";
         private const String SDFolder = "bss_vagott_web_16a9_SD";
 
         public Form1()
         {
-            Application.VisualStyleState = System.Windows.Forms.VisualStyles.VisualStyleState.NoneEnabled;  //csodás WinXP looks
+            Application.VisualStyleState = System.Windows.Forms.VisualStyles.VisualStyleState.NoneEnabled;  //csodás WinXP looks PeeT személyes kérésére :D
 
             InitializeComponent();
         }
@@ -54,7 +48,6 @@ namespace BSSImageResizer
 
         private void RefreshProjectLink()
         {
-            //W:\web\bss_vagott_web_16x9_HD
             String VideosRoute = tbRoute.Text + "\\" + (rbHD.Checked ? HDFolder : SDFolder) + "\\high_quality"; 
 
             DirectoryInfo DI = new DirectoryInfo(VideosRoute);
@@ -64,11 +57,11 @@ namespace BSSImageResizer
                 FileInfo[] fileList = DI.GetFiles();
                 Array.Sort<FileInfo>(fileList, new Comparison<FileInfo>(
                     (x, y) => x.Name.CompareTo(y.Name)));
-
+                /*
                 foreach (var fileInfo in fileList)
                 {
                     Console.WriteLine(fileInfo.Name);
-                }
+                }*/
 
                 if (fileList.Length != 0)
                 {
@@ -80,7 +73,7 @@ namespace BSSImageResizer
                 foreach (FileInfo fi in fileList)
                 {
                     String fullname = fi.Name.Split('.')[0];
-                    String name = fullname.Substring(0, fullname.Length - 3);
+                    String name = fullname.Substring(0, fullname.Length - 6);
 
                     if (cbSelectProjectName.Text.Length == 0)       //ha nincs beleirva semmi a kivalasztoba, akkor mindent belerakunk, 
                     {
@@ -172,9 +165,6 @@ namespace BSSImageResizer
                               "/keyframe/" + cbSelectProjectName.Text + "_lq.png\" style = \"display: none;\" />";
 
                 btGenerate.BackColor = Color.LightGreen;
-
-                Clipboard.SetText(tbDesc.Text);
-                lbDesc.Text += " (vágólapra másolva)";
             }
         }
 
@@ -195,17 +185,40 @@ namespace BSSImageResizer
 
         private void aboutToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            string message = "Készítő: ifj. Boldi\nKészült 2019 őszén, nagyságos törzsfőnökünk, PitaÚr megbízásából.\nGit: https://github.com/mboldi/image-resizer";
+            string message = "Készítette: ifj. Boldi\nKészült 2019 őszén, nagyságos törzsfőnökünk, PitaÚr megbízásából.\nGit: https://github.com/BSStudio/image-resizer";
             string caption = "About";
             MessageBoxButtons buttons = MessageBoxButtons.OK;
             DialogResult result;
-
-            // Displays the MessageBox.
+            
             result = MessageBox.Show(message, caption, buttons);
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (tbDesc.Text != "")
+            {
+                Clipboard.SetText(tbDesc.Text);
+                lbDesc.Text += " (vágólapra másolva)";
+
+                button3.BackColor = Color.LightGray;
+                button1.BackColor = Color.LightGreen;
+            }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            if (cbSelectProjectName.Text != "")
+            {
+                Clipboard.SetText(cbSelectProjectName.Text);
+
+                button1.BackColor = Color.LightGray;
+                button3.BackColor = Color.LightGreen;
+            }
         }
     }
 }
 
-
+//C:\Users\marta\Documents\BSS\web
+//W:\web\bss_vagott_web_16x9_HD
 //768x432 -> keyframe/_lq
 //160x90 -> thumbnail/_tn
