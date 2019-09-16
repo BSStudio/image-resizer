@@ -48,7 +48,8 @@ namespace BSSImageResizer
 
         private void RefreshProjectLink()
         {
-            String VideosRoute = tbRoute.Text + "\\" + (rbHD.Checked ? HDFolder : SDFolder) + "\\high_quality"; 
+            String VideosRoute = tbRoute.Text + (rbHD.Checked ? HDFolder : SDFolder) + "\\high_quality";
+            Console.WriteLine(VideosRoute);
 
             DirectoryInfo DI = new DirectoryInfo(VideosRoute);
 
@@ -73,16 +74,20 @@ namespace BSSImageResizer
                 foreach (FileInfo fi in fileList)
                 {
                     String fullname = fi.Name.Split('.')[0];
-                    String name = fullname.Substring(0, fullname.Length - 6);
 
-                    if (cbSelectProjectName.Text.Length == 0)       //ha nincs beleirva semmi a kivalasztoba, akkor mindent belerakunk, 
+                    if (fullname.Length != 0)
                     {
-                        cbSelectProjectName.Items.Add(name);
-                    }
-                    else                                            //ha van irva valami, akkor csak azokat tesszuk bele, amikben bennevan a beirt szoveg
-                    {
-                        if(name.ToLower().Contains(cbSelectProjectName.Text.ToLower()))
+                        String name = fullname.Substring(0, fullname.Length - 6);
+
+                        if (cbSelectProjectName.Text.Length == 0)       //ha nincs beleirva semmi a kivalasztoba, akkor mindent belerakunk, 
+                        {
                             cbSelectProjectName.Items.Add(name);
+                        }
+                        else                                            //ha van irva valami, akkor csak azokat tesszuk bele, amikben bennevan a beirt szoveg
+                        {
+                            if (name.ToLower().Contains(cbSelectProjectName.Text.ToLower()))
+                                cbSelectProjectName.Items.Add(name);
+                        }
                     }
                 }
             }
