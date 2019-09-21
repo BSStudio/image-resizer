@@ -11,6 +11,7 @@ namespace BSSImageResizer
     {
         private const String HDFolder = "bss_vagott_web_16a9_HD";
         private const String SDFolder = "bss_vagott_web_16a9_SD";
+        private bool HD;
 
         public Form1()
         {
@@ -48,7 +49,7 @@ namespace BSSImageResizer
 
         private void RefreshProjectLink()
         {
-            String VideosRoute = tbRoute.Text + (rbHD.Checked ? HDFolder : SDFolder) + "\\high_quality";
+            String VideosRoute = tbRoute.Text + (rbHD.Checked ? HDFolder : SDFolder) + "\\low_quality";
             Console.WriteLine(VideosRoute);
 
             DirectoryInfo DI = new DirectoryInfo(VideosRoute);
@@ -77,7 +78,7 @@ namespace BSSImageResizer
 
                     if (fullname.Length != 0)
                     {
-                        String name = fullname.Substring(0, fullname.Length - 6);
+                        String name = fullname.Substring(0, fullname.Length - 3);
 
                         if (cbSelectProjectName.Text.Length == 0)       //ha nincs beleirva semmi a kivalasztoba, akkor mindent belerakunk, 
                         {
@@ -145,6 +146,8 @@ namespace BSSImageResizer
         {
             RefreshProjectLink();
             cbSelectProjectName.Text = "";
+
+            HD = rbHD.Checked;
         }
 
         private void cbSelectProjectName_SelectedIndexChanged(object sender, EventArgs e)
